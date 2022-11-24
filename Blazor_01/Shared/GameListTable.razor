@@ -1,0 +1,40 @@
+<h3>GameListTable</h3>
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead class="thead-light">
+        <tr>
+            <th>Name</th>
+            <th>Genre</th>
+            <th>Release Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var items in Games)
+        {
+            <tr>
+                <td>@items.Name</td>
+                <td>@items.Genre</td>
+                <td>@items.ReleaseDate.ToString("dd.MM.yyyy")</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+@code {
+    private List<Game> Games { get; set; }
+
+    protected override Task OnInitializedAsync()
+    {
+        Games = new List<Game>()
+        {
+            new Game() {Name = "Farming", Genre = "Simulator", ReleaseDate = new DateTime(2022, 12, 31)},
+            new Game() {Name = "Witcher2", Genre = "Fighting", ReleaseDate = new DateTime(2020, 10, 5)},
+            new Game() {Name = "Need for speed", Genre = "Racing", ReleaseDate = new DateTime(2021, 5, 10)}
+        };
+
+        return base.OnInitializedAsync();
+    }
+
+}
